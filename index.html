@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Playlist App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <h1>My Playlists</h1>
+
+    <!-- Create Playlist Form -->
+    <section id="create-playlist">
+      <h2>Create a Playlist</h2>
+      <form id="playlist-form">
+        <input
+          type="text"
+          id="playlist-name"
+          placeholder="Playlist name"
+          required
+        />
+        <textarea
+          id="playlist-description"
+          placeholder="Description (optional)"
+        ></textarea>
+        <button type="submit">Add Playlist</button>
+      </form>
+    </section>
+
+    <section class="layout">
+      <!-- Left: Playlist list -->
+      <div id="playlist-list-section">
+        <h2>Your Playlists</h2>
+        <ul id="playlist-list">
+          <!-- JS will inject playlists here -->
+        </ul>
+      </div>
+
+      <!-- Right: Selected playlist details -->
+      <div id="playlist-detail-section">
+        <h2 id="playlist-title">No playlist selected</h2>
+        <p id="playlist-desc"></p>
+
+        <!-- Add song form (only works when a playlist is selected) -->
+        <form id="song-form">
+          <input
+            type="text"
+            id="song-title"
+            placeholder="Song title"
+            required
+          />
+          <input
+            type="text"
+            id="song-artist"
+            placeholder="Artist"
+            required
+          />
+          <input
+            type="url"
+            id="song-link"
+            placeholder="Song link (optional)"
+          />
+          <button type="submit">Add Song</button>
+        </form>
+
+        <h3>Songs</h3>
+        <ul id="song-list">
+          <!-- JS will inject songs here -->
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
