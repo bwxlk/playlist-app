@@ -1,4 +1,6 @@
 console.log("playlist app loaded")
+let playlists = [];
+let selectedPlaylistId = null;
 
 
 
@@ -10,6 +12,21 @@ const playlistListE1 = document.getElementById("playlist-list");
 
 playlistForm.addEventListner("submit", (e) => {
     e.preventDefault();
-    const name = playlistNameInput.vaslue.trim();
-    console.log("creating playlist", name);
+    const name = playlistNameInput.value.trim();
+    if (!name) return;
+
+const newPlaylist = {
+  id: Date.now().toString(),  // cheap unique id
+  name: name,
+  songs: []
+};
+
+playlists.push(newPlaylist);
+selectedPlaylistId = newPlaylist.id;
+
+// clear the input
+playlistNameInput.value = "";
+
+renderPlaylists();
+;
 });
