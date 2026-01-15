@@ -96,23 +96,51 @@ function renderPlaylists() {
     return;
   }
 
-  playlists.forEach((playlist) => {
-    const li = document.createElement("li");
-    li.textContent = playlist.name;
+ playlists.forEach((playlist) => {
+  const li = document.createElement("li");
 
-    if (playlist.id === selectedPlaylistId) {
-      li.classList.add("active");
+  // name span
+  const nameSpan = document.createElement("span");
+  nameSpan.textContent = playlist.name;
+  li.appendChild(nameSpan);
+
+  if (playlist.id === selectedPlaylistId) {
+    li.classList.add("active");
+  }
+
+  // click on the name selects playlist
+  nameSpan.addEventListener("click", () => {
+    selectedPlaylistId = playlist.id;
+    renderPlaylists();
+    renderSelectedPlaylist();
+  });
+
+  // delete button
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "x";
+  deleteBtn.classList.add("delete-btn");
+
+  deleteBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // don’t trigger the select click
+
+    // remove this playlist from the array
+    playlists = playlists.filter((p) => p.id !== playlist.id);
+
+    // if we deleted the selected one, clear selection
+    if (selectedPlaylistId === playlist.id) {
+      selectedPlaylistId = playlists[0]?.id || null;
     }
 
-    li.addEventListener("click", () => {
-      selectedPlaylistId = playlist.id;
-      renderPlaylists();
-      renderSelectedPlaylist();
-    });
-
-    playlistListEl.appendChild(li);
+    renderPlaylists();
+    renderSelectedPlaylist();
   });
-}
+
+  li.appendChild(deleteBtn);
+
+  playlistListEl.appendChild(li);
+});
+ 
+
 
 // ===== Render selected playlist (right side) =====
 function renderSelectedPlaylist() {

@@ -91,3 +91,11 @@ ul {
 #song-list li a:hover {
   text-decoration: underline;
 }
+
+.delete-btn {
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  background: #dc2626;
+  padding: 0.2rem 0.4rem;
+  
+}
